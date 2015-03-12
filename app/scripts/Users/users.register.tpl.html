@@ -1,36 +1,36 @@
   <div class="center-align">
     <div class="register row ">
-      <form class="col s12">
+      <form class="col s12" ng-submit="registerUser(user)">
         <div class="row center-align">
           <div class="input-field col s6">
-            <input id="first_name" type="text" class="validate">
+            <input id="first_name" type="text" class="validate" ng-model="user.user.first_name">
             <label for="first_name">First Name</label>
           </div>
           <div class="input-field col s6">
-            <input id="last_name" type="text" class="validate">
+            <input id="last_name" type="text" class="validate" ng-model="user.user.last_name">
             <label for="last_name">Last Name</label>
           </div>
         </div>
         <div class="row center-align">
           <div class="input-field col s12">
-            <input id="username" type="text" class="validate">
+            <input id="username" type="text" class="validate" ng-model="user.user.username">
             <label for="username">Username</label>
           </div>
         </div>
         <div class="row center-align">
           <div class="input-field col s12">
-            <input id="password" type="password" class="validate">
+            <input id="password" type="password" class="validate" ng-model="user.user.password">
             <label for="password">Password</label>
           </div>
         </div>
         <div class="row center-align">
           <div class="input-field col s12">
-            <input id="email" type="email" class="validate">
+            <input id="email" type="email" class="validate" ng-model="user.user.email">
             <label for="email">Email</label>
           </div>
         </div>
           <div class="center-align">
-            <a class="waves-effect waves-red lighten-2 btn-flat" href="#/">Submit</a>
+            <button class="waves-effect waves-red lighten-2 btn-flat">Submit</button>
             <a class="waves-effect waves-red lighten-2 btn-flat" href="#/">Cancel</a>
           </div>
       </form>

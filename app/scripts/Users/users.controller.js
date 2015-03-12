@@ -7,6 +7,7 @@
   function ($scope, UserFactory, $location){
 
     var user = UserFactory.user();
+    console.log('UsersCtrl checking in!');
 
     $scope.registerUser = function(userObj){
       UserFactory.register(userObj);

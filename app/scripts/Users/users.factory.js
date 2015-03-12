@@ -3,46 +3,51 @@
 
   angular.module('ScenicRoute')
 
-  .factory('UserFactory',['$http', 'HEROKU', '$cookieStore', '$location',
-   function ($http, HEROKU, $cookieStore, $location){
-
+  .factory('UserFactory',['$http', 'HEROKU', '$cookieStore', '$location', '$rootScope',
+   function ($http, HEROKU, $cookieStore, $location, $rootScope){
+      console.log('UserFactory Here');
      var currentUser = function () {
-        return $cookieStore.get('auth_token');
+        return $cookieStore.get('authentication-token');
       };
 
      var addUser = function(userObj){
+        console.log('hi');
        $http.post(HEROKU.URL + 'users', userObj, HEROKU.CONFIG)
-       .success(function(res){
+       .success(function (res){ 
+          console.log('Hi');
          console.log(res.user);
-         $cookieStore.put('auth_token', res.user.authentication_token);
-         HEROKU.CONFIG.headers['auth_token'] = res.user.authentication_token;
+         $cookieStore.put('authentication-token', res.user.authentication_token);
+         HEROKU.CONFIG.headers['authentication-token'] = res.user.authentication_token;
          return $location.path('/');
        });
      };
 
      var checkLoginStatus = function () {
         var user = currentUser();
+        console.log(user);
         if (user) {
-          HEROKU.CONFIG.headers['auth_token'] = user;
-        }
+          HEROKU.CONFIG.headers['authentication-token'] = user;
+          $rootScope.$broadcast('LoggedIn')
+          return true;
+        } return false;
       };
 
 
      var loginUser = function (userObj) {
 
-        $http.post(HEROKU.URL + 'users/sign_in', userObj
+        $http.post(HEROKU.URL + 'users/login', userObj
         ).success (function (res) {
           console.log(res.user);
-          $cookieStore.put('auth_token', res.user.authentication_token);
-          HEROKU.CONFIG.headers['auth_token'] = res.user.authentication_token;
+          $cookieStore.put('authentication-token', res.user.authentication_token);
+          HEROKU.CONFIG.headers['authentication-token'] = res.user.authentication_token;
 
-          $location.path('/');
+          return $location.path('/profile');
         });
 
       };
 
       var logoutUser = function () {
-        $cookieStore.remove('auth_token');
+        $cookieStore.remove('authentication-token');
         $location.path('#/');
       };
 

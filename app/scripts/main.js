@@ -4,7 +4,7 @@
 	angular.module('ScenicRoute', ['ngRoute', 'ngCookies',])
 
 	.constant('HEROKU',{
-	  URL: '',
+	  URL: 'https://scenic-route.herokuapp.com/',
 	  CONFIG: {
 	    headers : {
 	      'Content-Type' : 'application/json'
@@ -19,7 +19,7 @@
 	  // Home Page
 	  .when('/', {
 	    templateUrl: 'scripts/Home/home.tpl.html',
-	    controller: ''
+	    controller: 'UserController'
 	  })
 	  .when('/register', {
 	  	templateUrl: 'scripts/Users/users.register.tpl.html',
@@ -37,8 +37,10 @@
 	    $rootScope.$on('$routeChangeStart', function () {
 
 	      // Run my Login Status
-	      // console.log('Here');
-	      UserFactory.status();
+	      console.log('Checking Status Here');
+	      if (UserFactory.status()){
+
+	      }
 
 	     });
 

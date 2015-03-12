@@ -1,20 +1,20 @@
   <div class="center-align valign">
     <div class="register row ">
-      <form class="col s12">
+      <form class="col s12" ng-submit="loginUser(user)">
         <div class="row center-align">
           <div class="input-field col s6">
-            <input id="email" type="email" class="validate">
-            <label for="email">Email</label>
+            <input id="email" type="email" class="validate" ng-model="user.user.email">
+            <label for="email" >Email</label>
           </div>
         <div class="row center-align">
           <div class="input-field col s6">
-            <input id="password" type="password" class="validate">
+            <input id="password" type="password" class="validate" ng-model="user.user.password">
             <label for="password">Password</label>
           </div>
         </div>
         </div>
           <div class="center-align">
-            <a class="waves-effect waves-red lighten-2 btn-flat" href="#/">Submit</a>
+            <button class="waves-effect waves-red lighten-2 btn-flat">Submit</button>
             <a class="waves-effect waves-red lighten-2 btn-flat" href="#/">Cancel</a>
           </div>
       </form>
