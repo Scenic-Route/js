@@ -25,8 +25,8 @@
       };
 
       $scope.profileLink = function(userObj){
-       // e.preventDefault();
-       $location.path('/profile/' + res.user.id);
+        // e.preventDefault();
+        UserFactory.profile();
       }; 
 
       $scope.$on('LoggedIn', function (){

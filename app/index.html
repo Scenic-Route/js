@@ -30,7 +30,7 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a class="yellow-text" href="#/about" ng-hide="loggedin">About</a></li>
           <li><a class="yellow-text" href="#/" ng-hide="loggedin">Blog</a></li>
-          <li><a class="yellow-text" ng-show="loggedin" ng-click="profile()">Profile</a></li>
+          <li><a class="yellow-text" ng-show="loggedin" href="#/profile" ng-click="profile()">Profile</a></li>
           <li><a class="yellow-text" href="#/route_create" ng-show="loggedin">Create a Route</a></li>
           <li><a class="yellow-text" href="#/route_list" ng-show="loggedin">Routes</a></li>
           <li><a class="yellow-text" href="#/" ng-show="loggedin" ng-click="logout()">Log Out</a></li>
@@ -91,6 +91,9 @@
   
         <script src="scripts/Profile/profile.factory.js"></script>
         <script src="scripts/Profile/profile.controller.js"></script>
+
+        <script src="scripts/Routes/routes.factory.js"></script>
+        <script src="scripts/Routes/routes.controller.js"></script>
 
         <!-- endbuild -->
 
