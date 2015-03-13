@@ -22,6 +22,11 @@
       $scope.logout = function () {
         UserFactory.logout();
         $scope.loggedin = false;
+      };
+
+      $scope.profileLink = function(userObj){
+       // e.preventDefault();
+       $location.path('/profile/' + res.user.id);
       }; 
 
       $scope.$on('LoggedIn', function (){

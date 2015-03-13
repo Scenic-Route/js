@@ -28,6 +28,10 @@
 	  .when('/login', {
 	  	templateUrl: 'scripts/Users/users.login.tpl.html',
 	  	controller: 'UserController'
+	  })
+	  .when('/profile/:id', {
+	  	templateUrl: 'scripts/Profile/profile.tpl.html',
+	  	controller: 'ProfileController'
 	  });
 	}])  
 

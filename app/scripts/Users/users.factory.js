@@ -11,16 +11,29 @@
       };
 
      var addUser = function(userObj){
-        console.log('hi');
+        // console.log('hi');
        $http.post(HEROKU.URL + 'users', userObj, HEROKU.CONFIG)
        .success(function (res){ 
-          console.log('Hi');
+          console.log('New User Created!');
          console.log(res.user);
-         $cookieStore.put('authentication-token', res.user.authentication_token);
-         HEROKU.CONFIG.headers['authentication-token'] = res.user.authentication_token;
-         return $location.path('/');
+         setCookie(res);
+         $location.path('/profile/'+ res.user.id);
        });
      };
+
+     var setCookie = function (res) {
+      $cookieStore.put('authentication-token', res.user.authentication_token);
+      $cookieStore.put('user-id', res.user.id);
+      console.log($cookieStore.get('user-id'));
+      $cookieStore.put('username', res.user.username);
+      HEROKU.CONFIG.headers['authentication-token'] = res.user.authentication_token;
+
+     };
+
+     var profileLink = function(userObj){
+      // e.preventDefault();
+      $location.path('/profile/' + res.user.id);
+     }
 
      var checkLoginStatus = function () {
         var user = currentUser();
@@ -38,10 +51,15 @@
         $http.post(HEROKU.URL + 'users/login', userObj
         ).success (function (res) {
           console.log(res.user);
-          $cookieStore.put('authentication-token', res.user.authentication_token);
-          HEROKU.CONFIG.headers['authentication-token'] = res.user.authentication_token;
+          // $cookieStore.put('authentication-token', res.user.authentication_token);
+          // $cookieStore.put('user-id', res.user.id);
+          // console.log($cookieStore.get('user-id'));
+          // $cookieStore.put('username', res.user.username);
+          // HEROKU.CONFIG.headers['authentication-token'] = res.user.authentication_token;
+          setCookie(res);
 
-          return $location.path('/profile');
+
+          $location.path('/profile/'+ res.user.id);
         });
 
       };
@@ -57,7 +75,8 @@
        register : addUser,
        login : loginUser,
        logout : logoutUser,
-       status : checkLoginStatus
+       status : checkLoginStatus,
+       profile : profileLink
      };
 
     }
