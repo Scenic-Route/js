@@ -1,7 +1,7 @@
 ;(function (){
 	'use strict';
 
-	angular.module('ScenicRoute', ['ngRoute', 'ngCookies',])
+	angular.module('ScenicRoute', ['ngRoute', 'ngCookies', 'uiGmapgoogle-maps'])
 
 	.constant('HEROKU',{
 	  URL: 'https://scenic-route.herokuapp.com/',
@@ -32,7 +32,15 @@
 	  .when('/profile/:id', {
 	  	templateUrl: 'scripts/Profile/profile.tpl.html',
 	  	controller: 'ProfileController'
-	  });
+	  })
+	  .when('/create_route', {
+	  	templateUrl: 'scripts/Routes/routes.newroute.tpl.html',
+	  	controller: 'RoutesController'
+	  })
+	  .when('/route/:id', {
+	  	templateUrl: 'scripts/Routes/routes.tpl.html',
+	  	controller: 'RoutesController'
+	  })
 	}])  
 
 	.run([ '$rootScope', 'UserFactory', '$http', '$cookieStore',
