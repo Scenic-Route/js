@@ -69,6 +69,16 @@
         $location.path('#/');
       };
 
+      var viewUser = function () {
+        console.log('Viewing another user profile');
+      };
+
+      var editProfile = function () {
+        console.log('Editing profile');
+      };
+
+
+
 
      return{
        user : currentUser,
@@ -76,7 +86,9 @@
        login : loginUser,
        logout : logoutUser,
        status : checkLoginStatus,
-       profile : profileLink
+       profile : profileLink,
+       viewuser : viewUser,
+       editprofile : editProfile
      };
 
     }
