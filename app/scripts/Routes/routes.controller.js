@@ -8,6 +8,14 @@
 			console.log('RoutesController checking in');
 
 			$scope.routes = [];
+			
+			var route = RoutesFactory.newR;
+			// console.log(route);
+			
+			$scope.newRoute = function (routeObj){
+				RoutesFactory.newR(routeObj);
+				console.log(routeObj);
+			}
 
 			$scope.map = { 
 				center: { 

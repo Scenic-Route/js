@@ -23,8 +23,13 @@
 				console.log('Getting your Local routes.')
 			}
 
-			var makeNewRoute = function (){
+			var makeNewRoute = function (routeObj){
 				console.log('Sending New Route')
+				return $http.post(HEROKU.URL + 'routes/', routeObj, HEROKU.CONFIG)
+				.success(function (res){
+					console.log(res.routes)
+				})
+				console.log('routeObj');
 			}
 
 			

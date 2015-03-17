@@ -30,7 +30,7 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a class="yellow-text" href="#/about" ng-hide="loggedin">About</a></li>
           <li><a class="yellow-text" href="#/" ng-hide="loggedin">Blog</a></li>
-          <li><a class="yellow-text" ng-show="loggedin" href="#/profile">Profile</a></li>
+          <li><a class="yellow-text" ng-show="loggedin" href="#/profile/{{userId}}">Profile</a></li>
           <li><a class="yellow-text" href="#/create_route" ng-show="loggedin">Create a Route</a></li>
           <li><a class="yellow-text" href="#/route_list" ng-show="loggedin">Routes</a></li>
           <li><a class="yellow-text" href="#/" ng-show="loggedin" ng-click="logout()">Log Out</a></li>

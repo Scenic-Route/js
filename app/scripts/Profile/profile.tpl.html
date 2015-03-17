@@ -1,36 +1,38 @@
 <div class="profile-div row col s12">
 	<div class="divider"></div>
-	<div class="section">
+	<div class="profile section" ng-hide="editUser">
 	  <h5 class="">User Profile</h5>
 	  <ul class="col s6 left-align">
-	  	<li class="">Username : </li>
-	  	<li class="">Location : </li>
-	  	<li class="">Email : </li>
+	  	<li class="">Username : {{user.username}} </li>
+	  	<li class="">Location : {{profile.location}}</li>
+	  	<li class="">Email : {{user.email}}</li>
 	  	<button>Upload user photo</button>
+	  	<!-- <button ng-click="enableEditUser()">Edit User Profile</button> -->
 	  </ul>
 	  <div class="card small col s3 offset-s3 right-align">
 	    <div class="card-image waves-effect waves-block waves-light">
 	      <img class="activator responsive-img" src="images/home2.jpg">
 	    </div>
 	    <div class="card-content">
-	      <span class="card-title activator grey-text text-darken-4">Picture of User <i class="mdi-navigation-more-vert right"></i></span>
-	      <p><a href="#">View User's Website</a></p>
+	      <span class="card-title activator grey-text text-darken-4">{{user.username}} <i class="mdi-navigation-more-vert right"></i></span>
+	      <p><a ng-href="http://{{profile.vehicle_link}}">View User's Website</a></p>
 	    </div>
 	    <div class="card-reveal">
 	      <span class="card-title grey-text text-darken-4">About User <i class="mdi-navigation-close right"></i></span>
-	      <p>blahblahblah</p>
+	      <p>{{profile.about_me}}</p>
 	    </div>
 	  </div>
 	</div>
 	<div class="divider"></div>
-	<div class="section">
+	<div class="vehicle section" ng-hide="editVehicle">
 	  <h5 class="">Vehicle Profile</h5>
 	  <ul class="col s6 left-align">
-	  	<li class="">Make : </li>
-	  	<li class="">Model : </li>
-	  	<li class="">Year : </li>
-	  	<li class="">Link : </li>
+	  	<li class="">Make : {{profile.vehicle_make}}</li>
+	  	<li class="">Model : {{profile.vehicle_model}}</li>
+	  	<li class="">Year : {{profile.vehicle_year}}</li>
+	  	<li class="">Link : <a ng-href="http://{{profile.vehicle_link}}"></a>{{profile.vehicle_link}}</li>
 	  	<button>Upload vehicle photo</button>
+	  	<button ng-click="enableEditVehicle()">Edit Vehicle Profile</button>
 	  </ul>
 	  <div class="card small col s3 offset-s3 right-align">
 	    <div class="card-image waves-effect waves-block waves-light">
@@ -38,22 +40,38 @@
 	    </div>
 	    <div class="card-content">
 	      <span class="card-title activator grey-text text-darken-4">Picture of Car <i class="mdi-navigation-more-vert right"></i></span>
-	      <p><a href="#">View Car on WheelWell</a></p>
+	      <p><a ng-href="http://{{profile.vehicle_link}}">View Car on WheelWell</a></p>
 	    </div>
 	    <div class="card-reveal">
 	      <span class="card-title grey-text text-darken-4">Car Notes <i class="mdi-navigation-close right"></i></span>
 	      <p>This car is a POS.</p>
 	    </div>
 	  </div>
+	  
+	</div>
+	<div ng-show="editVehicle">
+		<h5>Edit Your Vehicle Profile</h5>
+		<ul class="col s6 left-align">
+			<form ng-submit>
+			<li>About Me : <input type="text" ng-model="profile.about_me"/></li>
+			<li>Location : <input type="text" ng-model="profile.location"/></li>
+			<li class="">Make : <input type="text" ng-model="profile.vehicle_make" /></li>
+			<li class="">Model : <input type="text" ng-model="profile.vehicle_model" /></li>
+			<li class="">Year : <input type="text" ng-model="profile.vehicle_year" /></li>
+			<li class="">Link : <input type="text" ng-model="profile.vehicle_link" /></li>
+			<button ng-click="saveVehicle()">Save Vehicle Profile</button>
+			</form>
+		</ul>
+
 	</div>
 	<div class="divider"></div>
 	<div class="section">
 	  <h5 class="">User Stats</h5>
 	  <ul>
-	  	<li class="">Routes Created : </li>
-	  	<li class="">Routes Visited : </li>
-	  	<li class="">Route Comments : </li>
-	  	<li class="">Route Votes : </li>
+	  	<li class="">Routes Created : {{stat.route_total}}</li>
+	  	<li class="">Routes Visited : {{stat.checkin_total}}</li>
+	  	<li class="">Route Comments : {{stat.comment_total}}</li>
+	  	<li class="">Route Votes : {{stat.rating_total}}</li>
 	  </ul>
 	</div>
 	

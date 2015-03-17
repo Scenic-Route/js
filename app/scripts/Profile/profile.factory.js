@@ -19,10 +19,16 @@
     };
 
     var getProfile = function (id){
-      return $http.get(HEROKU.URL + 'profile/' + user.id, 
+      return $http.get(HEROKU.URL + 'profiles/' + id, 
         {headers: HEROKU.CONFIG.headers,}
         // cache: true
       );
+    };
+
+    var saveVehicleProfile = function (data){
+      console.log(data);
+      return $http.patch(HEROKU.URL + 'profiles', data, HEROKU.CONFIG
+        );
     };
 
     // var editProfile = function(listObj){
@@ -53,12 +59,8 @@
 
 
     return {
-      add : addJob,
-      get : getAllJobs,
-      profile : getProfile,
-      del : deleteList,
-      addInt : addInterview
-      // preInt : preInt
+      getP : getProfile,
+      saveVP: saveVehicleProfile,
 
     };
 

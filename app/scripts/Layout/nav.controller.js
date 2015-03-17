@@ -4,16 +4,18 @@
 
   angular.module('ScenicRoute')
 
-  .controller('NavController', ['$scope', 'UserFactory', '$location', 
+  .controller('NavController', ['$scope', 'UserFactory', '$location', '$cookieStore', 
 
-    function ($scope, UserFactory, RoutesFactory, $location) {
+    function ($scope, UserFactory, $location, $cookieStore) {
     
       var user = UserFactory.user();
       console.log('NavCtrl checking in!');
 
       if (user) {
+
         $scope.loggedin = true;
         $scope.user = user;
+        $scope.userId = $cookieStore.get('user-id');
       } else {
         $scope.loggedin = false;
       }
@@ -31,6 +33,7 @@
 
       $scope.$on('LoggedIn', function (){
         $scope.loggedin = true;
+        $scope.userId = $cookieStore.get('user-id');
       });
 
 
