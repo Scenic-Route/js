@@ -33,7 +33,7 @@
           about_me: $scope.profile.about_me,
           vehicle_year: $scope.profile.vehicle_year,
           vehicle_make: $scope.profile.vehicle_make,
-          vehicle_model: $scope.profile.vehicle_model ,
+          vehicle_model: $scope.profile.vehicle_model,
           vehicle_link: $scope.profile.vehicle_link
 				}).success(function (res){
 					console.log(res);
@@ -42,35 +42,7 @@
 			}
 		
 
-		  $scope.age = "Edit age";
-		  $scope.name = "Edit name";
-		  $scope.editorEnabledAge = false;
-		  $scope.editorEnabledName = false;
-		  
-		  $scope.enableAgeEditor = function() {
-		    $scope.editorEnabledAge = true;
-		    $scope.editableAge = $scope.age;
-		  };
-		    
-		  $scope.enableNameEditor = function() {
-		    $scope.editorEnabledName = true;
-		    $scope.editableName = $scope.name;
-		  };    
-		  
-		  $scope.disableEditor = function() {
-		    $scope.editorEnabledAge = false;
-		    $scope.editorEnabledName = false;  
-		  };
-		  
-		  $scope.saveAge = function() {
-		    $scope.age = $scope.editableAge;
-		    $scope.disableEditor();
-		  };
-		    
-		  $scope.saveName = function() {
-		    $scope.name = $scope.editableName;
-		    $scope.disableEditor();
-		  };  
+  
 		}
 	])
 
