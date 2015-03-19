@@ -4,8 +4,8 @@
 
 	angular.module('ScenicRoute')
 
-	.factory('RoutesFactory', ['$http', 'HEROKU', '$location', '$routeParams', 'uiGmapGoogleMapApi',
-		function ($http, HEROKU, $location, $routeParams, uiGmapGoogleMapApi){
+	.factory('RoutesFactory', ['$http', 'HEROKU', '$location', '$routeParams',
+		function ($http, HEROKU, $location, $routeParams){
 
 			var getOneRoute = function (id){
 				console.log('Getting One Route!');

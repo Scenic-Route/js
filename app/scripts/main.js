@@ -1,7 +1,7 @@
 ;(function (){
 	'use strict';
 
-	angular.module('ScenicRoute', ['ngRoute', 'ngCookies', 'uiGmapgoogle-maps'])
+	angular.module('ScenicRoute', ['ngRoute', 'ngCookies', 'ngMap'])
 
 	.constant('HEROKU',{
 	  URL: 'https://scenic-route.herokuapp.com/',

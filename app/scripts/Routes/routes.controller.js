@@ -3,8 +3,8 @@
 
 	angular.module('ScenicRoute')
 
-	.controller('RoutesController', ['$scope', 'UserFactory', 'RoutesFactory', '$location', 'uiGmapGoogleMapApi', '$routeParams', '$cookieStore',
-		function ($scope, UserFactory, RoutesFactory, $location, uiGmapGoogleMapApi, $routeParams, $cookieStore){
+	.controller('RoutesController', ['$scope', 'UserFactory', 'RoutesFactory', '$location', '$routeParams', '$cookieStore',
+		function ($scope, UserFactory, RoutesFactory, $location, $routeParams, $cookieStore){
 			console.log('RoutesController checking in');
 
 			// $routeParams.id
@@ -40,26 +40,55 @@
 				})
 			}
 
-			$scope.startLat = 
+			// $scope.startLat = 
 
-			$scope.startLong =
+			// $scope.startLong =
 
-			$scope.endLat =
+			// $scope.endLat =
 
-			$scope.endLong =
+			// $scope.endLong =
 
-			$scope.routeName =
+			// $scope.routeName =
 
 			$scope.user = $cookieStore.get('user-id');
 
 			
 
-			$scope.map = { 
-				center: { 
-					latitude: 33.752265099999995, 
-					longitude: -84.3915661 
-				}, zoom: 13,
-			};
+			// $scope.map = { 
+			// 	center: { 
+			// 		latitude: 33.752265099999995, 
+			// 		longitude: -84.3915661 
+			// 	}, zoom: 13,
+			// };
+			$scope.map;
+			$scope.directionsDisplay;
+			$scope.$on('mapInitialized', function(evt, evtMap) {
+
+
+			  $scope.map = evtMap;
+
+			 });
+
+	    $scope.placeMarker = function(e) {
+				if($scope.markerList.length == 2){
+					console.log('Marker Limit Reached');
+					return;
+				}
+
+	      var marker = new google.maps.Marker({position: e.latLng, map: $scope.map, draggable: true});
+	      $scope.map.panTo(e.latLng);
+	      $scope.markerList.push(marker);
+				console.log($scope.markerList);
+	      console.log($scope.markerList.length);
+	    }
+
+
+			$scope.marker = {
+				draggable: true,
+				
+			}
+			$scope.markerList = [];
+
 			// $scope.onSuccess = function(position) {
 			//     $scope.map.center = {
 			//         latitude: position.coords.latitude,
@@ -70,43 +99,35 @@
 			//     $scope.onError(error) {
 			//         console.log('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
 			//     }
-			// $scope.navigator.geolocation.getCurrentPosition(onSuccess, onError);    
+			// $scope.navigator.geolocation.getCurrentPosition(onSuccess, onError); 
 
-			$scope.marker = {
-				id: "$index",
-				coords: {
-					latitude: 33.752265099999995,
-					longitude: -84.3915661
-				}
-			};
+			// $scope.addMarker = function ($event, $params){
+			// 	console.log($event);
+			// 	$scope.markerList.push(new google.maps.Marker({
+			// 		map: $scope.map,
+			// 		position: $params[0].latLng
 
-			$scope.markerList = [
-				{
-					latitude: 46,
-					longitude: -74,
-					message: 'I am some info about this point'
-				},
-				{
-					latitude: 47,
-					longitude: -75,
-					message: 'I am some info about this point'
-				},
-				{
-					latitude: 48,
-					longitude: -76,
-					message: 'I am some info about this point'
-				},
-				{
-					latitude: 49,
-					longitude: -77,
-					message: 'I am some info about this point'
-				},
-				{
-					latitude: 50,
-					longitude: -78,
-					message: 'I am some info about this point' 
-				},
-			]
+					
+			// 	}));
+			// }   
+
+			// $scope.click = function(event) {
+			//       map.setZoom(8);
+			//       map.setCenter(marker.getPosition());
+
+			// $scope.marker = {
+			// 	id: "$index",
+			// 	coords: {
+			// 		latitude: 33.752265099999995,
+			// 		longitude: -84.3915661
+			// 	}
+			// };
+
+			$scope.markerList = [];
+				
+					
+				
+			
 
 
 		}
