@@ -1,0 +1,49 @@
+<div class="row col s12">
+	<map zoom="10"></map>
+	<br>
+	<div class="stars-container center-align col s12">
+		<form action="#" ng-submit="#">
+			<div>
+				<p class="col s12 center-align route-check">
+					<input type="checkbox" id="test5">
+					<label for="test5">Sports</label>
+				</p>
+				<p class="col s12 center-align route-check">
+					<input type="checkbox" id="test6">
+					<label for="test6">Scenic</label>
+				</p>	
+			</div>
+			<div ng-controller="StarCtrl"> 
+				<span ng-repeat="rating in ratings"> Road Quality : {{rating.current}} out of {{rating.max}}
+		      <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)">
+		      </div>
+		    </span>
+		  </div>
+			<div ng-controller="StarCtrl"> 
+				<span ng-repeat="rating in ratings"> Traffic : {{rating.current}} out of {{rating.max}}
+		      <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)">
+		      </div>
+		    </span>
+		  </div>
+			<div ng-controller="StarCtrl"> 
+				<span ng-repeat="rating in ratings"> Twistyness : {{rating.current}} out of {{rating.max}}
+		      <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)">
+		      </div>
+		    </span>
+		  </div>
+			<div ng-controller="StarCtrl"> 
+				<span ng-repeat="rating in ratings"> Scenery : {{rating.current}} out of {{rating.max}}
+		      <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)">
+		      </div>
+		    </span>
+		  </div>
+		  <div class="input-field col s12">
+        <textarea id="textarea1" class="materialize-textarea"></textarea>
+        <label for="textarea1">Click to add Route Comments</label>
+      </div>
+      <button>Submit Rating</button>
+	  </form>
+  </div>
+
+
+</div>

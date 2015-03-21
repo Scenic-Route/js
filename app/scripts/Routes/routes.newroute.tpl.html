@@ -1,4 +1,8 @@
 <div>
- <map center="current-location" zoom="8" on-click="placeMarker()"></map>
- <button ng-click="saveRoute()">Save Route</button>
+ <form ng-submit="saveRoute()">
+ 	<input type="text" placeholder="Name your Route here!" ng-model="routeName" class="row col s6 center-align">
+
+	<map class="map" center="current-location" zoom="13" on-click="placeMarker()"></map>
+	<button>Save Route</button>
+ </form>
 </div>
