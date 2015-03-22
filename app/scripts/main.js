@@ -41,6 +41,10 @@
 	  	templateUrl: 'scripts/Routes/routes.tpl.html',
 	  	controller: 'RoutesController'
 	  })
+	  .when('/routes/search',{
+	  	templateUrl: 'scripts/Routes/routeslocal.tpl.html',
+	  	controller: 'RoutesController'
+	  })
 	}])  
 
 	.run([ '$rootScope', 'UserFactory', '$http', '$cookieStore',

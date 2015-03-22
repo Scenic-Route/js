@@ -1,8 +1,9 @@
 <div>
- <form ng-submit="saveRoute()">
- 	<input type="text" placeholder="Name your Route here!" ng-model="routeName" class="row col s6 center-align">
+	<map class="map activator responsive-img" center="current-location" zoom="11" on-click="placeMarker()"></map>
+	<form ng-submit="saveRoute()" class="center-align col s12">
+ 		<input type="text" placeholder="Name your Route here!" ng-model="routeName" class="row col s6 center-align">
 
-	<map class="map" center="current-location" zoom="13" on-click="placeMarker()"></map>
-	<button>Save Route</button>
+		<button class="col s12 center-align">Save Route</button>
  </form>
+ 
 </div>

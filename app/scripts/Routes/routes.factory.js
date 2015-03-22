@@ -22,12 +22,14 @@
 				console.log('Getting your routes.')
 				return $http.get(HEROKU.URL + 'routes',
 					{headers: HEROKU.CONFIG.headers,}
-					);
+				);
 			};
 
 			var getLocalRoutes = function (){
 				console.log('Getting your Local routes.')
-				return $http.post(HEROKU.URL + 'routes/search/', HEROKU.CONFIG);
+				return $http.post(HEROKU.URL + 'routes/search/', 
+					{headers: HEROKU.CONFIG.headers,}
+				);
 			};
 
 			var makeNewRoute = function (routeObj){
