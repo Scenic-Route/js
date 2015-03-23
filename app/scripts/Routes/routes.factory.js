@@ -25,9 +25,9 @@
 				);
 			};
 
-			var getLocalRoutes = function (){
+			var getLocalRoutes = function (searchObject){
 				console.log('Getting your Local routes.')
-				return $http.post(HEROKU.URL + 'routes/search/', 
+				return $http.post(HEROKU.URL + 'routes/search/', searchObject,
 					{headers: HEROKU.CONFIG.headers,}
 				);
 			};

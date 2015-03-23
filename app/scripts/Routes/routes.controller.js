@@ -3,8 +3,8 @@
 
 	angular.module('ScenicRoute')
 
-	.controller('RoutesController', ['$scope', 'UserFactory', 'RoutesFactory', '$location', '$routeParams', '$cookieStore',
-		function ($scope, UserFactory, RoutesFactory, $location, $routeParams, $cookieStore){
+	.controller('RoutesController', ['$scope', 'UserFactory', 'RoutesFactory', '$location', '$routeParams', '$cookieStore', '$timeout',
+		function ($scope, UserFactory, RoutesFactory, $location, $routeParams, $cookieStore, $timeout){
 			console.log('RoutesController checking in');
 
 			
@@ -20,6 +20,30 @@
 			$scope.searchRoutes = function(){
 				RoutesFactory.localR();
 			}
+
+			var weather = false;
+			$scope.weatherTog = function(){
+				weather = !weather;
+				console.log($scope.map);
+				if(weather){
+					weatherLayer.setMap($scope.map);
+					cloudLayer.setMap($scope.map);
+				}else{
+					weatherLayer.setMap(null);
+					cloudLayer.setMap(null);
+				};
+
+
+
+			};
+
+
+			var weatherLayer = new google.maps.weather.WeatherLayer({
+			    temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
+			  });
+
+		  var cloudLayer = new google.maps.weather.CloudLayer();
+			
 			
 			var route = RoutesFactory.newR;
 			
@@ -63,21 +87,64 @@
 			$scope.map;
 			$scope.directionsDisplay;
 			$scope.$on('mapInitialized', function(evt, evtMap) {
-
+				console.log($location.url());
 
 			  $scope.map = evtMap;
-
+			  if($location.url() !== '/create_route') {
+					$timeout($scope.asdf, 5000);
+			  }
+			  	
+			  
 			 });
+
+			$scope.asdf = function(miles){
+					// console.log($scope.map.center);
+					RoutesFactory.localR({
+						search:{
+						current_lat: $scope.map.center.k,
+            current_long: $scope.map.center.D,
+            search_radius: miles || 50
+					  }
+					}).success( function (res) { 
+						console.log(res) ;
+						hideMarkers();
+						removeMarkers();
+						res.routes.forEach(function (route){
+						var latLng = new google.maps.LatLng(route.latitude, route.longitude);
+			      var marker = new google.maps.Marker({
+			      	position: latLng, 
+			      	map: $scope.map,
+			      	clickable: true, 
+			      	draggable: false,
+			      });
+
+			      $scope.markerList.push(marker);
+						// console.log($scope.markerList);
+			      // console.log($scope.markerList.length);
+			      
+					});
+				});
+				};
+
+
+
+			// $scope.searchDist = function(){
+
+			// 	asdf();
+
+			// }
 
 			var removeMarkers = function(){
 				$scope.markerList = [];
-				$scope.$apply();
+				// $scope.$apply();
 			};
 
 			var hideMarkers = function() {
 	      console.log($scope.map);
-	      $scope.markerList[0].setMap(null);
-	      $scope.markerList[1].setMap(null);
+	      $scope.markerList.forEach(function (marker){
+	      	marker.setMap(null);
+	      })
+	     
 
 			       
       };
@@ -136,8 +203,8 @@
 	      	drawRoute();
 	      };
 
-				console.log($scope.markerList);
-	      console.log($scope.markerList.length);
+				// console.log($scope.markerList);
+	   //    console.log($scope.markerList.length);
 	      };
 	    
 
