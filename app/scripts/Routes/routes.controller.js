@@ -9,7 +9,7 @@
 
 			
 			
-			
+			$routeParams.id
 
 			$scope.routes = [];
 
@@ -90,12 +90,32 @@
 				console.log($location.url());
 
 			  $scope.map = evtMap;
-			  if($location.url() !== '/create_route') {
+			  if($location.url() == '/routes/search/') {
 					$timeout($scope.asdf, 5000);
+			  }
+
+			  if($location.url() == '/route/' + $routeParams.id){
+			  	$scope.getRoute();
+			  	console.log('hi');
+
 			  }
 			  	
 			  
 			 });
+			  
+			 
+
+			$scope.getRoute = function (){
+				RoutesFactory.oneR($routeParams.id)
+				.success(function (res){
+					console.log(res);
+					hideMarkers();
+					removeMarkers();
+					$scope.route = res.route;
+					calcRoute(res.route.latitude, res.route.longitude, res.route.end_lat, res.route.end_long);
+
+				})
+			}
 
 			$scope.asdf = function(miles){
 					// console.log($scope.map.center);
@@ -155,34 +175,60 @@
 
 				directionsDisplay.setMap($scope.map);
 
-				function calcRoute() {
-				        var start = $scope.markerList[0].position.k + "," + $scope.markerList[0].position.D;
-				        var end = $scope.markerList[1].position.k + "," + $scope.markerList[1].position.D;
+				// function calcRoute() {
+				//         var start = $scope.markerList[0].position.k + "," + $scope.markerList[0].position.D;
+				//         var end = $scope.markerList[1].position.k + "," + $scope.markerList[1].position.D;
 
 
 
-				        var request = {
-				          origin: start,
-				          destination: end,
-				          optimizeWaypoints: true,
-				          travelMode: google.maps.TravelMode.DRIVING
-				        };
+				        // var request = {
+				        //   origin: start,
+				        //   destination: end,
+				        //   optimizeWaypoints: true,
+				        //   travelMode: google.maps.TravelMode.DRIVING
+				        // };
 
-				        directionsService.route(request, function(response, status) {
-				          if (status == google.maps.DirectionsStatus.OK) {
-				            directionsDisplay.setDirections(response);            
-				            console.log('Route Drawn!');  
-				            hideMarkers();
+				        // directionsService.route(request, function(response, status) {
+				        //   if (status == google.maps.DirectionsStatus.OK) {
+				        //     directionsDisplay.setDirections(response);            
+				        //     console.log('Route Drawn!');  
+				        //     hideMarkers();
 
-				          }
-				        });
+				        //   }
+				        // });
 
 
-	      };
+	      // };
 
-	      calcRoute();
+	      calcRoute($scope.markerList[0].position.k, $scope.markerList[0].position.D, $scope.markerList[1].position.k, $scope.markerList[1].position.D);
 
 			};
+
+			var calcRoute = function (start_lat, start_lng, end_lat, end_lng){
+				var start = start_lat + "," + start_lng;
+				var end = end_lat + "," + end_lng;
+
+				var directionsDisplay = new google.maps.DirectionsRenderer();
+				var directionsService = new google.maps.DirectionsService();
+
+				directionsDisplay.setMap($scope.map);
+
+				var request = {
+				  origin: start,
+				  destination: end,
+				  optimizeWaypoints: true,
+				  travelMode: google.maps.TravelMode.DRIVING
+				};
+
+				directionsService.route(request, function(response, status) {
+				  if (status == google.maps.DirectionsStatus.OK) {
+				    directionsDisplay.setDirections(response);            
+				    console.log('Route Drawn!');  
+				    hideMarkers();
+
+				  }
+			  });
+			}
 
 			
 
@@ -206,6 +252,22 @@
 				// console.log($scope.markerList);
 	   //    console.log($scope.markerList.length);
 	      };
+
+      // var postRatings = function(ratings){
+      // 	RoutesFactory.postR({
+      // 		rating:{
+      // 			user_id:,
+      // 			route_id:,
+      // 			twist_rating:,
+      // 			quality_rating:,
+      // 			traffic_rating:,
+      // 			scenery_rating:,
+      // 			sport:,
+      // 			scenic:,
+      // 			comments:,
+      // 		}
+      // 	})
+      // }
 	    
 
 

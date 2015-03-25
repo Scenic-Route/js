@@ -7,6 +7,7 @@
 	.factory('RoutesFactory', ['$http', 'HEROKU', '$location', '$routeParams',
 		function ($http, HEROKU, $location, $routeParams){
 
+
 			var getOneRoute = function (id){
 				console.log('Getting One Route!');
 				return $http.get(HEROKU.URL + 'routes/' + id,
@@ -47,6 +48,14 @@
 				console.log("route");
 			};
 
+			var postRatings = function (ratingObj){
+				return $http.post(HEROKU.URL + '/ratings', ratingObj,
+				{headers: HEROKU.CONFIG.headers,}
+				)
+
+
+			}
+
 			var saveRoute = function (){
 				console.log('Route Saving');
 			};
@@ -81,6 +90,7 @@
 				setEM : endMarker,
 				filled : routeFill,
 				saveR : saveRoute,
+				postR : postRatings,
 			};
 
 		}	
