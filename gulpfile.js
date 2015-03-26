@@ -21,7 +21,7 @@ gulp.task('styles', function () {
 
 gulp.task('html', ['styles'], function () {
 
-  return gulp.src('app/*.html')
+  return gulp.src('app/**/*.html')
     .pipe($.useref.assets({searchPath: '{.tmp,app}'}))
     .pipe($.if('*.css', $.csso()))
     .pipe($.useref.restore())
