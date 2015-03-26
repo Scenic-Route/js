@@ -138,15 +138,18 @@
 			      	clickable: true, 
 			      	draggable: false,
 			      });
+			      var time = new Date(route.created_at);
+			      var dist = route.distance;
+			      var rdist = dist.toFixed(2);
 			      marker.content = '<div class="infoWindowContent">' + '<ul>' + 
 			      	'<li>' + '<strong>' + 'Route Created by: ' + '</strong>' + route.username + '</li>' +
-			      	'<li>' + '<strong>' + 'Route Created on: ' + '</strong>' + route.created_at + '</li>' +
-			      	'<li>' + '<strong>' + 'Route popularity: ' + '</strong>' + route.popularity + '</li>' +
-			      	'<li>' + '<strong>' + 'Distance from you: ' + '</strong>' + route.distance + ' miles' + '</li>' +
+			      	'<li>' + '<strong>' + 'Route Created on: ' + '</strong>' + time + '</li>' +
+			      	'<li>' + '<strong>' + 'Popularity Rating: ' + '</strong>' + route.popularity +  '</li>' +
+			      	'<li>' + '<strong>' + 'Distance from you: ' + '</strong>' + rdist  + ' miles.' + '</li>' +
 			      	'<li>' + '<strong>' + 'Link to Route: ' + '</strong>' + '<a href="/#/route/' + route.id + '">' + 'Load Route' + '</a>' + '</li>' +
 			      	'</ul>' + '</div>';
 			      google.maps.event.addListener(marker, 'click', function(){
-			                  infoWindow.setContent('<h2>' + route.name + '</h2>' + marker.content);
+			                  infoWindow.setContent('<h5>' + route.name + '</h5>' + marker.content);
 			                  infoWindow.open($scope.map, marker);
 			              });
 			      $scope.markerList.push(marker);
