@@ -1,3 +1,5 @@
-## Yo, I'm a Readme
+## The Scenic Route Beta
 
-You should probably update me so people looking at your code have an idea what it is being used for :)
+This is The Scenic Route, an app developed to help drivers find a scenic driving experience and to give them the ability to share their favorite Routes with their friends. 
+
+This is a work in progress.
