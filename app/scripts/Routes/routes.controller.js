@@ -96,7 +96,7 @@
 
 			  if($location.url() == '/route/' + $routeParams.id){
 			  	$scope.getRoute();
-			  	console.log('hi');
+			  	// console.log('hi');
 
 			  }
 			  	
@@ -126,19 +126,34 @@
             search_radius: miles || 50
 					  }
 					}).success( function (res) { 
-						console.log(res) ;
+						console.log(res);
 						hideMarkers();
 						removeMarkers();
 						res.routes.forEach(function (route){
 						var latLng = new google.maps.LatLng(route.latitude, route.longitude);
+						var infoWindow = new google.maps.InfoWindow();
 			      var marker = new google.maps.Marker({
 			      	position: latLng, 
 			      	map: $scope.map,
 			      	clickable: true, 
 			      	draggable: false,
 			      });
-
+			      marker.content = '<div class="infoWindowContent">' + '<ul>' + 
+			      	'<li>' + '<strong>' + 'Route Created by: ' + '</strong>' + route.username + '</li>' +
+			      	'<li>' + '<strong>' + 'Route Created on: ' + '</strong>' + route.created_at + '</li>' +
+			      	'<li>' + '<strong>' + 'Route popularity: ' + '</strong>' + route.popularity + '</li>' +
+			      	'<li>' + '<strong>' + 'Distance from you: ' + '</strong>' + route.distance + ' miles' + '</li>' +
+			      	'<li>' + '<strong>' + 'Link to Route: ' + '</strong>' + '<a href="/#/route/' + route.id + '">' + 'Load Route' + '</a>' + '</li>' +
+			      	'</ul>' + '</div>';
+			      google.maps.event.addListener(marker, 'click', function(){
+			                  infoWindow.setContent('<h2>' + route.name + '</h2>' + marker.content);
+			                  infoWindow.open($scope.map, marker);
+			              });
 			      $scope.markerList.push(marker);
+			      $scope.openInfoWindow = function(e, selectedMarker){
+			              e.preventDefault();
+			              google.maps.event.trigger(selectedMarker, 'click');
+			          }
 						// console.log($scope.markerList);
 			      // console.log($scope.markerList.length);
 			      
