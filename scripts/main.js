@@ -597,7 +597,7 @@
 			      	'<li>' + '<strong>' + 'Route Created on: ' + '</strong>' + time + '</li>' +
 			      	'<li>' + '<strong>' + 'Popularity Rating: ' + '</strong>' + route.popularity +  '</li>' +
 			      	'<li>' + '<strong>' + 'Distance from you: ' + '</strong>' + rdist  + ' miles.' + '</li>' +
-			      	'<li>' + '<strong>' + 'Link to Route: ' + '</strong>' + '<a href="/#/route/' + route.id + '">' + 'Load Route' + '</a>' + '</li>' +
+			      	'<li>' + '<strong>' + 'Link to Route: ' + '</strong>' + '<a href="#/route/' + route.id + '">' + 'Load Route' + '</a>' + '</li>' +
 			      	'</ul>' + '</div>';
 			      google.maps.event.addListener(marker, 'click', function(){
 			                  infoWindow.setContent('<h5>' + route.name + '</h5>' + marker.content);
