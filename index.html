@@ -1,0 +1,75 @@
+<!doctype html>
+<html ng-app="ScenicRoute">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>ScenicRoute</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="styles/vendor.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+    <link rel="stylesheet" href="styles/main.css">
+
+    <script src="scripts/vendor/modernizr.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+  </head>
+  <body>
+    <nav ng-controller="NavController">
+      <div class="nav-wrapper grey darken-3">
+        <a href="#/" class="brand-logo">SR</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a class="yellow-text" href="#/about" ng-hide="loggedin">About</a></li>
+          <li><a class="yellow-text" href="#/" ng-hide="loggedin">Blog</a></li>
+          <li><a class="yellow-text" ng-show="loggedin" href="#/profile/{{userId}}">Profile</a></li>
+          <li><a class="yellow-text" href="#/create_route" ng-show="loggedin">Create a Route</a></li>
+          <li><a class="yellow-text" href="#/routes/search" ng-show="loggedin">Routes</a></li>
+          <li><a class="yellow-text" href="#/" ng-show="loggedin" ng-click="logout()">Log Out</a></li>
+         
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container" ng-view>
+
+      
+    </div>
+
+    <footer class="page-footer grey darken-3">
+       <div class="container">
+         <div class="row">
+           <div class="col l6 s12">
+             <h5 class="white-text">About The Scenic Route</h5>
+             <p class="grey-text text-lighten-4">The Scenic Route was designed to help the driver inside of you find new and exciting routes to explore. We wanted to bring drivers together with other drivers to share their favorite Scenic Routes and create a community where driving enthusiast culture can be grown.</p>
+           </div>
+           <div class="col l4 offset-l2 s12">
+             <h5 class="white-text">Links</h5>
+             <ul>
+               <li><a class="grey-text text-lighten-3" href="#!">Donate</a></li>
+               <li><a class="grey-text text-lighten-3" href="/#/contact">Contact</a></li>
+               <li><a class="grey-text text-lighten-3" href="#!">Check out our iPhone App</a></li>
+               <li><a class="grey-text text-lighten-3" href="#!">How to Use</a></li>
+             </ul>
+           </div>
+         </div>
+       </div>
+       <div class="footer-copyright">
+         <div class="container grey darken-4">
+         © 2015 Created by Bobby, Dane & Matt.
+         <a class="grey-text text-lighten-4 right" href="#!">Other Links</a>
+         </div>
+       </div>
+     </footer>
+  
+    <script src="//maps.google.com/maps/api/js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=weather,visualization,panoramio"></script>
+
+    <script src="scripts/vendor.js"></script>
+
+        <script src="scripts/main.js"></script>
+
+  
+</body>
+</html>
